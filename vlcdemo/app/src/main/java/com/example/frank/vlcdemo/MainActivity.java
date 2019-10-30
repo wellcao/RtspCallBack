@@ -16,14 +16,15 @@ public class MainActivity extends Activity implements RtspHelper2.RtspCallback {
 
 //    public static final String URL = "rtsp://admin:admin123@10.31.11.79:554/cam/realmonitor?channel=1@subtype=0";
 
-    public static final String URL = "rtsp://admin:1234567a@192.168.100.5/Streaming/Channels/1";
+    public static final String URL_MAIN = "rtsp://admin:1234567a@192.168.100.5/Streaming/Channels/1";
     public static final String URL_SUB = "rtsp://admin:1234567a@192.168.100.5/h264/ch1/sub/av_stream";
+
+    private Button mBtBig,mBtSmall,mBtMain,mBtSub;
 
 //    public static final String URL = "rtsp://10.31.0.61:8554/test.mkv";
 
     private GLSurfaceView mSurfaceView;
     private RtspSurfaceRender mRender;
-    private Button btnChange;
     private Handler mHandler = new Handler(){
         @Override
         public void dispatchMessage(Message msg) {
@@ -37,27 +38,56 @@ public class MainActivity extends Activity implements RtspHelper2.RtspCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnChange = findViewById(R.id.bt_change_size);
+        mBtBig = findViewById(R.id.bt_change_size_big);
+        mBtSmall = findViewById(R.id.bt_change_size_small);
+        mBtMain = findViewById(R.id.bt_change_stream_main);
+        mBtSub = findViewById(R.id.bt_change_stream_sub);
 
         mSurfaceView = findViewById(R.id.surface);
         mSurfaceView.setEGLContextClientVersion(3);
 
         mRender = new RtspSurfaceRender(mSurfaceView);
-        mRender.setRtspUrl(URL);
+        mRender.setRtspUrl(URL_SUB);
 
         mSurfaceView.setRenderer(mRender);
         mSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
-        btnChange.setOnClickListener(new View.OnClickListener() {
+        mBtBig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //mRender.setRGBScale(0.5f,0.5f);
                 RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mSurfaceView.getLayoutParams();
+                params.width = 1200;
+                params.height = 675;
+                mSurfaceView.setLayoutParams(params);
+               mHandler.sendEmptyMessageDelayed(0,500);
+            }
+        });
+
+        mBtSmall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) mSurfaceView.getLayoutParams();
                 params.width = 600;
                 params.height = 337;
                 mSurfaceView.setLayoutParams(params);
+                mHandler.sendEmptyMessageDelayed(0,500);
+            }
+        });
+
+        mBtMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mRender.setRtspUrl(URL_MAIN);
+                mHandler.sendEmptyMessageDelayed(0,500);
+            }
+        });
+
+        mBtSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 mRender.setRtspUrl(URL_SUB);
-               mHandler.sendEmptyMessageDelayed(0,500);
+                mHandler.sendEmptyMessageDelayed(0,500);
             }
         });
     }

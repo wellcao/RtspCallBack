@@ -11,9 +11,33 @@
         android:layout_width="600dp"
         android:layout_height="337.5dp" />
     <Button
-        android:id="@+id/bt_change_size"
-        android:layout_width="100dp"
+        android:id="@+id/bt_change_size_big"
+        android:layout_width="150dp"
         android:layout_height="50dp"
-        android:text="切换"
+        android:text="切换大尺寸"
         android:layout_alignParentBottom="true"/>
+
+    <Button
+        android:id="@+id/bt_change_stream_main"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="切换主码流"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"/>
+
+    <Button
+        android:id="@+id/bt_change_size_small"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:text="切换小尺寸"
+        android:layout_marginBottom="80dp"/>
+    <Button
+        android:id="@+id/bt_change_stream_sub"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="80dp"
+        android:text="切换子码流"/>
 </RelativeLayout>
