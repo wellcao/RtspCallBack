@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:keepScreenOn="true"
+    tools:context="com.example.frank.vlcdemo.MainActivity">
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/surface"
+        android:layout_width="600dp"
+        android:layout_height="337.5dp" />
+    <Button
+        android:id="@+id/bt_change_size"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="切换"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
